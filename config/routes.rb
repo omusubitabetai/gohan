@@ -4,28 +4,31 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  devise_for :admin, controllers: {
-    sessions: 'admin/sessions'
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions'
   }
 
   root "homes#top"
 
-  namespace :users do
+  scope module: :users do
     resources :users, only: [:show, :edit, :update]
-    get  "/users/quit"  => "users#quit"
+    get "/users/quit"  => "users#quit"
     resources :favorites, only: [:index]
-    resources :foods
-    resources :comments, only: [:create, :edit, :destroy]
-    resources :requests, only: [:index, :destroy]
-    get  "/requests/ok"  => "requests#ok"
-    get  "/requests/thanks"  => "requests#thanks"
+    resources :foods do
+      resources :comments, only: [:create, :edit, :destroy]
+      resources :requests, only: [:index, :destroy]
+      get "/requests/:id/ok" => "requests#ok"
+      get "/requests/:id/thanks" => "requests#thanks"
+    end
   end
 
-  namespace :admin do
-    get  "/homes/top"  => "homes#top"
+  namespace :admins do
+    get "/homes/top" => "homes#top"
     resources :users, only: [:index, :show, :edit, :update]
-    resources :foods
-    resources :requests, only: [:show, :update]
+    resources :foods do
+      resources :requests, only: [:show, :update]
+    end
   end
 
+    post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
 end
