@@ -1,1 +1,31 @@
-マイページ
+<h2>マイページ</h2>
+
+<p>登録情報</p>
+<p><%= link_to "編集する", edit_user_path(@user.id), class:"btn btn-success ml-5" %></p>
+
+<% if @user.image.attached? %>
+  <p><%= image_tag @user.image, size: "100x100" %></p>
+<% else %>
+  <p><%= image_tag 'no_image', size: "100x100" %></p>
+<% end %>
+
+<p>ユーザーネーム</p>
+<p><%= @user.user_name %></p>
+
+<p>名前</p>
+<p><%= @user.last_name + " " + @user.first_name %></p>
+
+<p>フリガナ</p>
+<p><%= @user.last_name_kana + " " + @user.first_name_kana %></p>
+
+<p>メールアドレス</p>
+<p><%= @user.email %></p>
+
+<p>郵便番号</p>
+<p><%= @user.postal_code %></p>
+
+<p>住所</p>
+<p><%= @user.address %></p>
+
+<p>電話番号</p>
+<p><%= @user.phone_number %></p>
