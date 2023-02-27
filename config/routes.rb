@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   root "homes#top"
 
   scope module: :users do
-    resources :users, only: [:show, :edit, :update]
+    patch '/users/out' => 'users#out'
     get "/users/quit"  => "users#quit"
+    resources :users, only: [:show, :edit, :update]
     resources :favorites, only: [:index]
     resources :foods do
       resources :comments, only: [:create, :edit, :destroy]
