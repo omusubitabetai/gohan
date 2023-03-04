@@ -1,0 +1,5 @@
+ja:
+ activerecord:
+   attributes:
+     food:
+       agreement: チェックボックスにチェックを入れてください。

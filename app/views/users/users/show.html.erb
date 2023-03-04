@@ -1,7 +1,7 @@
 <h2>マイページ</h2>
 
 <p>登録情報</p>
-<p><%= link_to "編集する", edit_user_path(@user.id), class:"btn btn-success ml-5" %></p>
+<p><%= link_to "編集する", edit_user_path(@user.id),class:"btn btn-success mr-5" %></p>
 
 <% if @user.image.attached? %>
   <p><%= image_tag @user.image, size: "100x100" %></p>

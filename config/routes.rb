@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update]
     resources :favorites, only: [:index]
     resources :foods do
-      resources :comments, only: [:create, :edit, :destroy]
+      resources :comments, only: [:create, :edit, :destroy, :new]
       resources :requests, only: [:index, :destroy]
       get "/requests/:id/ok" => "requests#ok"
       get "/requests/:id/thanks" => "requests#thanks"

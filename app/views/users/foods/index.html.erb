@@ -1,0 +1,10 @@
+<h1>譲渡投稿一覧</h1>
+
+<p><%= link_to "新規投稿", new_food_path,class:"btn btn-success mr-5" %></p>
+
+<% @foods.each do |food| %>
+  <p><%= link_to food.title, food_path(food) %></p>
+<% end %>
+
+
+

@@ -1,5 +1,6 @@
 <h1>新規投稿</h1>
 <%= form_with model: @food do |f| %>
+<%= render 'layouts/error_messages', model: f.object %>
   <h4>タイトル</h4>
   <%= f.text_field :title %>
 
@@ -7,7 +8,13 @@
   <%= f.text_area :text %>
 
   <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-
+  <%= f.file_field :images, accept: "image/*", multiple: true %>
+  <div class ="field">
+    <br>
+    <p>未開封のフードのみ譲渡可能です。</p>
+    <p>賞味期限は半年以上ありますか。</p>
+    <%= f.check_box :agreement %>
+    <%= f.label :agreement, '同意します。'%>
+  </div>
   <%= f.submit '投稿' %>
 <% end %>
