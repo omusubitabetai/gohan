@@ -13,11 +13,15 @@ Rails.application.routes.draw do
   scope module: :users do
     patch '/users/out' => 'users#out'
     get "/users/quit"  => "users#quit"
-    resources :users, only: [:show, :edit, :update]
-    resources :favorites, only: [:index]
+    resources :users, only: [:show, :edit, :update] do
+      member do
+        get :favorites
+      end
+    end
     resources :foods do
-      resources :comments, only: [:create, :edit, :destroy, :new]
+      resources :comments, only: [:create, :destroy]
       resources :requests, only: [:index, :destroy]
+      resources :favorites, only: [:create, :destroy]
       get "/requests/:id/ok" => "requests#ok"
       get "/requests/:id/thanks" => "requests#thanks"
     end

@@ -4,7 +4,7 @@
 <p><%= link_to "編集する", edit_user_path(@user.id),class:"btn btn-success mr-5" %></p>
 
 <% if @user.image.attached? %>
-  <p><%= image_tag @user.image, size: "100x100" %></p>
+  <p><%= image_tag @user.image, class: "rounded-circle", size: "100x100" %></p>
 <% else %>
   <p><%= image_tag 'no_image', size: "100x100" %></p>
 <% end %>
@@ -29,3 +29,5 @@
 
 <p>電話番号</p>
 <p><%= @user.phone_number %></p>
+
+<p><%=link_to"お気に入り一覧",favorites_user_path(@user.id) %></p>

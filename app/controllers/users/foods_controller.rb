@@ -6,20 +6,14 @@ class Users::FoodsController < ApplicationController
   end
 
   def create
-    #render 'new' and return if params[:food][:unopen] == '1' || params[:food][:relish] == '1'
-     # チェックボックスにチェックない場合エラ-にしたい
-    # render 'new' if params[:food][:unopen] == '0' || params[:food][:~~~] == '0'
-    # saveしないでrednerさせる条件に↑のparamsの値のチェックが入る
     @food = Food.new(food_params)
     @food.user_id = current_user.id
     if @food.save
       redirect_to foods_path
     else
       render 'new'
-      #render 'new' if params[:food][:unopen] == '0' || params[:food][:relish] == '0'
     end
   end
-
 
   def index
     @foods = Food.all
@@ -27,9 +21,18 @@ class Users::FoodsController < ApplicationController
 
   def show
     @food = Food.find(params[:id])
+    @comments = @food.comments
+    @comment = current_user.comments.new
   end
 
   def edit
+    @food = Food.find(params[:id])
+  end
+
+  def update
+    food = Food.find(params[:id])
+    food.update(food_params)
+    redirect_to food_path(food.id)
   end
 
   private

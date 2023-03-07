@@ -8,6 +8,36 @@
   <p><%= image_tag image %></p>
 <% end %>
 
+<% if @food.favorited_by?(current_user) %>
+  <p>
+    <%= link_to food_favorites_path(@food.id), method: :delete do %>
+      ☆<%= @food.favorites.count %> お気に入り
+    <% end %>
+  </p>
+    <% else %>
+  <p>
+    <%= link_to food_favorites_path(@food.id), method: :post do %>
+      ☆<%= @food.favorites.count %> お気に入り
+    <% end %>
+  </p>
+<% end %>
+
+<p><%= link_to "編集", edit_food_path %></p>
+
+<div class = "comments">
+<%= form_with(model:[@food, @comment], method: :post) do |f| %>
+  <%= f.text_area :comment %>
+  <%= f.hidden_field :food_id, value: @food.id %>
+  <%= f.submit 'コメントする' %>
+<% end %>
+</div>
+
+<% @comments.each do |comment| %>
+<div>
+  <%= comment.comment %>
+</div>
+<% end %>
+
 <p><%= link_to "戻る", foods_path %></p>
 
 
