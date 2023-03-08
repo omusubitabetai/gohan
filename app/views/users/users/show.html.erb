@@ -30,4 +30,5 @@
 <p>電話番号</p>
 <p><%= @user.phone_number %></p>
 
+<p><%=link_to"譲受申請履歴一覧",food_requests_path(@user.id) %></p>
 <p><%=link_to"お気に入り一覧",favorites_user_path(@user.id) %></p>
