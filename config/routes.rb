@@ -20,10 +20,10 @@ Rails.application.routes.draw do
     end
     resources :foods do
       resources :comments, only: [:create, :destroy]
-      resources :requests, only: [:index, :destroy]
-      resources :favorites, only: [:create, :destroy]
+      resources :requests, only: [:create, :destroy]
       get "/requests/:id/ok" => "requests#ok"
       get "/requests/:id/thanks" => "requests#thanks"
+      resources :favorites, only: [:create, :destroy]
     end
   end
 

@@ -4,8 +4,14 @@ class Food < ApplicationRecord
   has_many_attached :images
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
+  has_many :requests, dependent: :destroy
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+
+  def requested_by?(user)
+    requests.exists?(user_id: user.id)
+  end
+
 end

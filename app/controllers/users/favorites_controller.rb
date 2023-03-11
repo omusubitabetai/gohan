@@ -10,7 +10,4 @@ class Users::FavoritesController < ApplicationController
   @food_favorite.destroy
   redirect_to food_path(params[:food_id])
   end
-
-  def index
-  end
 end
