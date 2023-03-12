@@ -20,6 +20,7 @@ class Users::FoodsController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
     @food = Food.find(params[:id])
     @comments = @food.comments
     @comment = current_user.comments.new

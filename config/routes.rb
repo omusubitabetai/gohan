@@ -21,8 +21,8 @@ Rails.application.routes.draw do
     resources :foods do
       resources :comments, only: [:create, :destroy]
       resources :requests, only: [:create, :destroy]
-      get "/requests/:id/ok" => "requests#ok"
-      get "/requests/:id/thanks" => "requests#thanks"
+      get "/requests/:id/ok" => "requests#ok", as: "requests_ok"
+      get "/requests/:id/thanks" => "requests#thanks", as: "requests_thanks"
       resources :favorites, only: [:create, :destroy]
     end
   end

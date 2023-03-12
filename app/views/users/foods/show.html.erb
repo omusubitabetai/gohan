@@ -8,13 +8,8 @@
   <p><%= image_tag image %></p>
 <% end %>
 
-<% if @food.requested_by?(current_user) %>
-  <p>
-    <%= link_to food_requests_path(@food), method: :delete do %>
-      譲受申請
-    <% end %>
-  </p>
-<% else %>
+<%# unless @food.requests.exists?(user_id: current_user.id) %>
+<% unless @food.requested_by?(current_user) %>
   <p>
     <%= link_to food_requests_path(@food), method: :post do %>
       譲受申請
