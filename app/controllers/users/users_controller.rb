@@ -24,6 +24,12 @@ class Users::UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def requests
+    @user = User.find(params[:id])
+    requests = Request.where(user_id: @user.id).pluck(:food_id)
+    @request_foods = Food.find(requests)
+  end
+
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:food_id)

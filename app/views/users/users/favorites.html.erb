@@ -1,4 +1,4 @@
 <h3>お気に入り一覧</h3>
 <% @favorite_foods.each do |food|%>
-<p><%=food.title %></p>
+  <%= link_to food.title, food_path(food.id) %><br>
 <% end %>

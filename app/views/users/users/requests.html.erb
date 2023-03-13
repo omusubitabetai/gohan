@@ -1,0 +1,6 @@
+譲受申請一覧
+<% if @request_foods.present? %>
+  <% @request_foods.each do |food| %>
+    <%= link_to food.title, food_path(food.id) %><br>
+  <% end %>
+<% end %>
